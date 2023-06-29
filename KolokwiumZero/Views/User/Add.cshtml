@@ -1,0 +1,86 @@
+﻿@using KolokwiumZero.UI.Models
+@model UserModel
+@{
+    ViewData["Title"] = "Dodaj uczestnika";
+}
+
+<h2>Dodaj uczestnika</h2>
+<form method="post">
+    <div class="form-group">
+        <label asp-for="Name">Imię</label>
+        <input asp-for="Name" type="text" class="form-control" />
+        <span asp-validation-for="Name" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="LastName">Nazwisko</label>
+        <input asp-for="LastName" type="text" class="form-control" />
+        <span asp-validation-for="LastName" class="text-danger"></span>
+    </div>
+
+	<div class="form-group">
+		<label asp-for="Adress">Adres</label>
+		<input asp-for="Adress" type="text" class="form-control" />
+		<span asp-validation-for="Adress" class="text-danger"></span>
+	</div>
+
+	<div class="form-group">
+		<label asp-for="PhoneNumber">Numer telefonu</label>
+		<input asp-for="PhoneNumber" type="text" class="form-control" />
+		<span asp-validation-for="PhoneNumber" class="text-danger"></span>
+	</div>
+
+    <div class="form-group form-check">
+        <input asp-for="Under18" id="under18Checkbox" type="checkbox" class="form-check-input" />
+        <label class="form-check-label" asp-for="Under18">Poniżej 18</label>
+        <span asp-validation-for="Under18" class="text-danger"></span>
+    </div>
+
+    <div class="form-group guardian-info" style="display: none;">
+        <label asp-for="KeeperNameAndLastName">Imię i nazwisko opiekuna</label>
+        <input asp-for="KeeperNameAndLastName" type="text" class="form-control" />
+        <span asp-validation-for="KeeperNameAndLastName" class="text-danger"></span>
+    </div>
+
+    <div class="form-group guardian-info" style="display: none;">
+        <label asp-for="KeeperPhoneNumber">Numer telefonu opiekuna</label>
+        <input asp-for="KeeperPhoneNumber" type="text" class="form-control" />
+        <span asp-validation-for="KeeperPhoneNumber" class="text-danger"></span>
+    </div>
+    
+    <div class="form-group">
+		<label asp-for="StartDate">Początek wycieczki</label>
+        <input asp-for="StartDate" type="date" class="form-control" />
+        <span asp-validation-for="StartDate" class="text-danger"></span>
+    </div>
+    
+    <div class="form-group">
+		<label asp-for="EndDate">Koniec wycieczki</label>
+		<input asp-for="EndDate" type="date" class="form-control" />
+		<span asp-validation-for="EndDate" class="text-danger"></span>
+    </div>
+    
+    <div class="form-group">
+        <select asp-for="TripId" asp-items="Model.TripTypes" class="form-control">
+            <option value="">Wybierz wycieczkę</option>
+        </select>
+    </div>
+    <button type="submit" class="btn btn-outline-primary float-right">Zapisz</button>
+</form>
+
+@section Scripts {
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $("#under18Checkbox").change(function () {
+                if (this.checked) {
+                    $(".guardian-info").show();
+                    $(".guardian-info input").attr('data-val', 'true');
+                } else {
+                    $(".guardian-info").hide();
+                    $(".guardian-info input").attr('data-val', 'false');
+                }
+            });
+        });
+
+    </script>
+}

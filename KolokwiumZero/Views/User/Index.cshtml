@@ -1,0 +1,55 @@
+﻿@using KolokwiumZero.Storage.Dtos
+@model IEnumerable<UserDto>
+
+@{
+
+    ViewBag.Title = "Zapis na Konkurs";
+}
+
+@if (Model.Any())
+{
+    <table class="table">
+        <thead class="tab-pane">
+            <tr>
+                <th> Imię</th>
+                <th> Nazwisko</th>
+                <th> Adres</th>
+                <th> Numer telefonu</th>
+                <th> Ponizej 18</th>
+                <th> Imie i nazwisko opiekuna</th>
+				<th> Numer telefonu opiekuna</th>
+                <th> Początek wycieczki</th>
+                <th> Koniec wycieczki</th>
+                <th><a class="btn btn-outline-primary" asp-action="Add">Dodaj uczestnika</a></th>
+            </tr>
+        </thead>
+        <tbody class="tab-content">
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>@item.Name</td>
+                    <td>@item.LastName</td>
+                    <td>@item.Adress</td>
+                    <td>@item.PhoneNumber</td>
+                    <td>@item.Under18</td>
+                    <td>@item.KeeperNameAndLastName</td>
+                    <td>@item.KeeperPhoneNumber</td>
+                    <td>@item.StartDate</td>
+                    <td>@item.EndDate</td> 
+                    <td>
+                        <form method="post" asp-action="Delete" asp-route-id="@item.Id">
+                            <button type="submit" class="btn btn-link text-danger float-right">Usuń</button>
+                        </form>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+else
+{
+    <p>Brak uczestników wycieczki</p>
+    <p>
+        <a class="btn btn-outline-primary" asp-action="Add">Dodaj uczestnika</a>
+    </p>
+}
