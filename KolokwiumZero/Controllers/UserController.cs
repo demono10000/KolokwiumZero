@@ -61,11 +61,14 @@ namespace KolokwiumZero.UI.Controllers
         [HttpPost]
         public IActionResult Delete(int id)
         {
+            Console.WriteLine("Delete" + id);
             var user = _userService.Get(id);
             if (user == null)
             {
+                Console.WriteLine("User not found");
                 return NotFound();
             }
+            Console.WriteLine("User found");
 
             var currentDate = DateTime.Now;
             var tripStartDate = user.StartDate;

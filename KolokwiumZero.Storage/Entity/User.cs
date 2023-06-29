@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
+using System.Runtime.InteropServices;
 using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
@@ -27,9 +28,9 @@ namespace KolokwiumZero.Storage.Entity
         [Required]
         public bool Under18 { get; set; }
         [MaxLength(256)]
-        public string KeeperNameAndLastName { get; set; }
+        public string? KeeperNameAndLastName { get; set; }
         [MaxLength(11)]
-        public string KeeperPhoneNumber { get; set; }
+        public string? KeeperPhoneNumber { get; set; }
         [Required]
         public DateTime StartDate { get; set; }
         [Required]

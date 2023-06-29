@@ -10,8 +10,8 @@ namespace KolokwiumZero.UI.Models
         public string Adress { get; set; }
         public string PhoneNumber { get; set; }
         public bool Under18 { get; set; }
-        public string KeeperNameAndLastName { get; set; }
-        public string KeeperPhoneNumber { get; set; }
+        public string? KeeperNameAndLastName { get; set; }
+        public string? KeeperPhoneNumber { get; set; }
         public DateTime StartDate { get; set; }
         public DateTime EndDate { get; set; }
         public int TripId { get; set; }

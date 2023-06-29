@@ -20,6 +20,11 @@ namespace KolokwiumZero.Storage.Service
 
         public void Create(UserDto user)
         {
+            if (user.Under18 && (string.IsNullOrEmpty(user.KeeperNameAndLastName) || string.IsNullOrEmpty(user.KeeperPhoneNumber)))
+            {
+                throw new Exception("Dane opiekuna są wymagane dla osób poniżej 18 lat");
+            }
+
             var entity = new User()
             {
                 Name = user.Name,
@@ -32,11 +37,12 @@ namespace KolokwiumZero.Storage.Service
                 StartDate = user.StartDate,
                 EndDate = user.EndDate,
                 TripId = user.TripId
-
             };
+
             _dbContext.Set<User>().Add(entity);
             _dbContext.SaveChanges();
         }
+
 
         public List<UserDto> Read()
         {
@@ -52,6 +58,7 @@ namespace KolokwiumZero.Storage.Service
                 KeeperPhoneNumber = x.KeeperPhoneNumber,
                 StartDate = x.StartDate,
                 EndDate = x.EndDate,
+                Id = x.Id,
             }).ToList();
             return result;
         }
